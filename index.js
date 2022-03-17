@@ -1,6 +1,7 @@
 const { app, BrowserWindow, Menu } = require('electron');
-const menu = require('./menu');
 const { autoUpdater } = require('electron-updater');
+const path = require("path");
+const menu = require('./menu');
 
 let window;
 
@@ -9,8 +10,7 @@ app.whenReady().then(() => {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false
+      preload: path.join(__dirname, "preload.js")
     }
   });
   window.loadFile('index.html');

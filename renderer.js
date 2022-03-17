@@ -1,10 +1,8 @@
-const { ipcRenderer } = require("electron");
-
 var editor = new SimpleMDE({
   element: document.getElementById("editor"),
 });
 
-ipcRenderer.on("editor-event", (event, arg) => {
+window.api.receive("editor-event", (event, arg) => {
   console.log(arg);
   event.sender.send("editor-reply", `Received ${arg}`);
 
@@ -18,13 +16,13 @@ ipcRenderer.on("editor-event", (event, arg) => {
   }
 });
 
-ipcRenderer.on("load", (event, content) => {
+window.api.receive("load", (event, content) => {
   if (content) {
     editor.value(content);
   }
 });
 
-ipcRenderer.send("editor-reply", "Page Loaded");
+window.api.send("editor-reply", "Page Loaded");
 
 function dropHandler(event) {
   event.preventDefault();
