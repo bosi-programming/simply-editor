@@ -1,0 +1,25 @@
+{
+  "name": "simply-editor",
+  "version": "0.1.0",
+  "description": "A clean text editor",
+  "main": "index.js",
+  "scripts": {
+    "start": "DEBUG=true electron .",
+    "build:macos": "electron-builder --macos --dir",
+    "publish:github": "electron-builder --mac -p always"
+  },
+  "keywords": [
+    "text",
+    "editor"
+  ],
+  "author": "Felipe Azevedo Bosi",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "electron": "^17.1.2",
+    "electron-builder": "^23.0.2"
+  },
+  "dependencies": {
+    "electron-updater": "^5.0.0",
+    "simplemde": "^1.11.2"
+  }
+}
