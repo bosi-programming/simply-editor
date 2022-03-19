@@ -3,19 +3,20 @@ const { autoUpdater } = require('electron-updater');
 const path = require("path");
 const menu = require('./menu');
 
-let window;
-
 app.whenReady().then(() => {
-  window = new BrowserWindow({
+  const window = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, "preload.js")
     }
   });
-  window.loadFile('index.html');
+  const html = path.join(__dirname, "../public/index.html");
+  console.log(html);
+  window.loadFile(html);
 
   autoUpdater.checkForUpdatesAndNotify();
 });
 
 Menu.setApplicationMenu(menu);
+

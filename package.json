@@ -2,9 +2,10 @@
   "name": "simply-editor",
   "version": "0.1.0",
   "description": "A clean text editor",
-  "main": "index.js",
+  "main": "build/electron.js",
   "scripts": {
-    "start": "DEBUG=true electron .",
+    "compile": "tsc",
+    "start": "npm run compile && DEBUG=true electron .",
     "build:macos": "electron-builder --macos --dir",
     "publish:github": "electron-builder --mac -p always"
   },
