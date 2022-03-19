@@ -3,16 +3,14 @@ var editor = new SimpleMDE({
 });
 
 window.api.receive("editor-event", (event, arg) => {
-  console.log(arg);
-  event.sender.send("editor-reply", `Received ${arg}`);
+  window.api.send("editor-reply", `Received ${arg}`);
 
   if (arg === "toggle-bold") {
     editor.toggleBold();
   }
 
   if (arg === "save") {
-    console.log("save 2", editor.value());
-    event.sender.send("save", editor.value());
+    window.api.send("save", editor.value());
   }
 });
 

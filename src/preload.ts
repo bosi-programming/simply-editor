@@ -5,16 +5,17 @@ import { contextBridge, ipcRenderer } from 'electron';
 contextBridge.exposeInMainWorld('api', {
   send: (channel, data) => {
     // whitelist channels
-    let validChannels = ['toMain', 'editor-reply'];
+    let validChannels = ['toMain', 'editor-reply', 'save'];
     if (validChannels.includes(channel)) {
       ipcRenderer.send(channel, data);
     }
   },
   receive: (channel, func) => {
+    console.log(channel, func, func());
     let validChannels = ['fromMain', 'editor-event', 'load'];
     if (validChannels.includes(channel)) {
       // Deliberately strip event as it includes `sender`
-      ipcRenderer.on(channel, (event, ...args) => func(...args));
+      ipcRenderer.on(channel, (event, ...args) => func(event, ...args));
     }
   },
 });

@@ -143,6 +143,4 @@ if (process.platform === 'darwin') {
 }
 
 // @ts-ignore
-const menu = Menu.buildFromTemplate(template);
-
-module.exports = menu;
+export const menu = Menu.buildFromTemplate(template);
