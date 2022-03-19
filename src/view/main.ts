@@ -1,4 +1,4 @@
-import App from './view/App.svelte';
+import App from './App.svelte';
 
 const app = new App({
 	target: document.body,
@@ -8,3 +8,4 @@ const app = new App({
 });
 
 export default app;
+

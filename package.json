@@ -5,12 +5,11 @@
   "main": "build/electron.js",
   "scripts": {
     "compile": "tsc",
-    "start": "yarn compile && concurrently \"yarn svelte-dev\" \"DEBUG=true electron .\"",
-    "build:macos": "electron-builder --macos --dir",
-    "publish:github": "electron-builder --mac -p always",
+    "electron": "wait-on tcp:8080 && electron .",
     "svelte-build": "rollup -c",
     "svelte-dev": "rollup -c -w",
-    "svelte-start": "sirv public"
+    "svelte-start": "sirv public",
+    "start": "yarn compile && concurrently -k \"yarn svelte-dev\" \"DEBUG=true yarn electron\""
   },
   "keywords": [
     "text",
@@ -21,20 +20,26 @@
   "dependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
-    "concurrently": "^7.0.0",
+    "@rollup/plugin-typescript": "^8.0.0",
+    "@tsconfig/svelte": "^2.0.0",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-svelte": "^7.0.0",
     "rollup-plugin-terser": "^7.0.0",
     "simplemde": "^1.11.2",
-    "svelte": "^3.0.0"
+    "svelte": "^3.0.0",
+    "svelte-check": "^2.0.0",
+    "svelte-preprocess": "^4.0.0",
+    "tslib": "^2.0.0",
+    "typescript": "^4.0.0"
   },
   "devDependencies": {
     "@types/eslint": "^7.2.10",
     "@types/prettier": "^2.2.3",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.00.0",
+    "concurrently": "^7.0.0",
     "electron": "^17.1.2",
     "electron-builder": "^23.0.2",
     "electron-reload": "^2.0.0-alpha.1",
@@ -44,6 +49,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.4.0",
     "prettier": "^2.2.1",
-    "sirv-cli": "^2.0.0"
+    "sirv-cli": "^2.0.0",
+    "wait-on": "^6.0.1"
   }
 }
