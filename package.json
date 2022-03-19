@@ -5,9 +5,12 @@
   "main": "build/electron.js",
   "scripts": {
     "compile": "tsc",
-    "start": "npm run compile && DEBUG=true electron .",
+    "start": "yarn compile && concurrently \"yarn svelte-dev\" \"DEBUG=true electron .\"",
     "build:macos": "electron-builder --macos --dir",
-    "publish:github": "electron-builder --mac -p always"
+    "publish:github": "electron-builder --mac -p always",
+    "svelte-build": "rollup -c",
+    "svelte-dev": "rollup -c -w",
+    "svelte-start": "sirv public"
   },
   "keywords": [
     "text",
@@ -16,8 +19,16 @@
   "author": "Felipe Azevedo Bosi",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "electron-updater": "^5.0.0",
-    "simplemde": "^1.11.2"
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "concurrently": "^7.0.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "simplemde": "^1.11.2",
+    "svelte": "^3.0.0"
   },
   "devDependencies": {
     "@types/eslint": "^7.2.10",
@@ -26,11 +37,13 @@
     "@typescript-eslint/parser": "^4.00.0",
     "electron": "^17.1.2",
     "electron-builder": "^23.0.2",
+    "electron-reload": "^2.0.0-alpha.1",
     "eslint": "^7.24.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.4.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "sirv-cli": "^2.0.0"
   }
 }

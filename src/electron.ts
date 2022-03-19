@@ -1,5 +1,4 @@
 import { app, BrowserWindow, Menu } from 'electron';
-import { autoUpdater } from 'electron-updater';
 import { join } from 'path';
 import { menu } from './menu';
 
@@ -13,8 +12,11 @@ app.whenReady().then(() => {
   });
   const html = join(__dirname, '../public/index.html');
   window.loadFile(html);
-
-  autoUpdater.checkForUpdatesAndNotify();
 });
 
 Menu.setApplicationMenu(menu);
+
+require('electron-reload')(__dirname, {
+  electron: join(__dirname, '../node_modules', '.bin', 'electron'),
+  awaitWriteFinish: true,
+});
