@@ -26,6 +26,9 @@
     if (arg === 'save-as-html') {
       window.api.send('save-as-html', editor.value());
     }
+    if (arg === 'export-pdf') {
+      window.api.send('export-pdf', editor.value());
+    }
   });
 
   window.api.receive('load', (event, content) => {

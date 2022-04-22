@@ -34,7 +34,7 @@ ipcMain.on('save-as-html', (_, arg) => {
 });
 
 export class Html {
-  saveFileAsHtml() {
+  saveFile() {
     console.log('Saving the file as html');
 
     const window = BrowserWindow.getFocusedWindow();

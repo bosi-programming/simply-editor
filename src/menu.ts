@@ -8,6 +8,7 @@ import {
 } from 'electron';
 import { Html } from './model/Html';
 import { Markdown } from './model/Markdown';
+import { Pdf } from './model/Pdf';
 
 app.on('ready', () => {
   globalShortcut.register('CommandOrControl+S', () => {
@@ -17,7 +18,7 @@ app.on('ready', () => {
 
   globalShortcut.register('CommandOrControl+shift+S', () => {
     const html = new Html();
-    html.saveFileAsHtml();
+    html.saveFile();
   });
 
   globalShortcut.register('CommandOrControl+O', () => {
@@ -68,7 +69,14 @@ const template = [
         accelerator: 'CommandOrControl+shift+S',
         click() {
           const html = new Html();
-          html.saveFileAsHtml();
+          html.saveFile();
+        },
+      },
+      {
+        label: 'Export as PDF',
+        click() {
+          const pdf = new Pdf();
+          pdf.exportFile();
         },
       },
     ],
@@ -111,8 +119,8 @@ if (process.env.DEBUG) {
       // @ts-ignore
       { type: 'separator' },
       {
-        // @ts-ignore
         role: 'reload',
+        // @ts-ignore
         accelerator: 'Alt+R',
       },
     ],
