@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from 'electron';
+import { app, BrowserWindow, Menu, screen } from 'electron';
 import { join } from 'path';
 import { menu } from './menu';
 
@@ -6,8 +6,8 @@ let window: any;
 
 function createWindow() {
   window = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: screen.getPrimaryDisplay().bounds.width,
+    height: screen.getPrimaryDisplay().bounds.height,
     webPreferences: {
       preload: join(__dirname, 'preload.js'),
     },
