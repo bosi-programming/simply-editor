@@ -5,7 +5,7 @@ import { contextBridge, ipcRenderer } from 'electron';
 contextBridge.exposeInMainWorld('api', {
   send: (channel, data) => {
     // whitelist channels
-    let validChannels = ['toMain', 'editor-reply', 'save'];
+    let validChannels = ['toMain', 'editor-reply', 'save', 'save-as-html'];
     if (validChannels.includes(channel)) {
       ipcRenderer.send(channel, data);
     }

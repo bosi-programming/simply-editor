@@ -22,6 +22,10 @@
     if (arg === 'save') {
       window.api.send('save', editor.value());
     }
+
+    if (arg === 'save-as-html') {
+      window.api.send('save-as-html', editor.value());
+    }
   });
 
   window.api.receive('load', (event, content) => {

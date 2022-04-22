@@ -11,8 +11,11 @@ window.api.receive("editor-event", (event, arg) => {
   }
 
   if (arg === "save") {
-    console.log("save 2", editor.value());
     event.sender.send("save", editor.value());
+  }
+
+  if (arg === "save-as-html") {
+    event.sender.send("save-as-html", editor.value());
   }
 });
 
